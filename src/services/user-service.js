@@ -60,6 +60,27 @@ class UserService {
             throw error;
         }
     }
+
+    async signIn(email, plainPassword){
+        try {
+            // step 1 -> get the user using the email
+            const user = await this.userRepository.getByEmail(email);
+            // step 2 -> compare incoming plain password with stored encrypted password
+            const passwordMatch = await this.checkPassword(plainPassword, user.password);
+
+            if(!passwordMatch){
+                comsole.log("Password doesn't match");
+                throw {error : "Invalid password"};
+            }
+            // step 3 -> if passwords match then create a token and send it to the user
+            const newJWT = this.createToken({email : user.email, id : user.id});
+            return newJWT;
+        } 
+        catch (error) {
+            console.log("Something went wrong in the sign in process");
+            throw error;
+        }
+    }
 }
 
 module.exports = UserService;  
