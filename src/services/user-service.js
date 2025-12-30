@@ -1,4 +1,4 @@
-const { UserRepository } = require('../repository/user-repository');
+const UserRepository = require('../repository/user-repository');
 
 class UserService {
     constructor(){
@@ -9,8 +9,7 @@ class UserService {
         try {
             const user = await this.userRepository.create(data);
             return user;
-        } 
-        catch (error) {
+        } catch (error) {
             console.log("Something went wrong at service layer");
             throw error;
         }
@@ -20,12 +19,11 @@ class UserService {
         try {
             const user = await this.userRepository.destroy(userId);
             return user;
-        } 
-        catch (error) {
+        } catch (error) {
             console.log("Something went wrong at service layer");
             throw error;
         }
     }
 }
 
-module.exports = { UserService };
+module.exports = UserService;  // ✅ Direct export

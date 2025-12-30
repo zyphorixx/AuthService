@@ -1,4 +1,4 @@
-const { UserService } = require('../services/user-service');
+const UserService = require('../services/user-service');  // 👈 FIXED!
 
 const userService = new UserService();
 
@@ -30,7 +30,6 @@ const create = async (req, res) => {
 const destroy = async (req, res) => {
     try {
         const response = await userService.destroy(req.params.id);
-
         return res.status(200).json({
             data: response,
             success: true,
