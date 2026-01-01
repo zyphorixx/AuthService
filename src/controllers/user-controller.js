@@ -91,9 +91,30 @@ const isAuthenticated =async (req, res) => {
     }
 }
 
+const isAdmin = async (req, res) => {
+    try {
+        const token = await userService.isAdmin(req.body.id);
+        return res.status(200).json({
+            data : token,
+            success : true,
+            message : 'Something went wrong',
+            err : {}
+        });
+    } 
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            message: 'Something went wrong',
+            success: false,
+            err: error
+        });
+    }
+}
 module.exports = {
     create,
     destroy,
     signIn,
-    isAuthenticated
+    isAuthenticated,
+    isAdmin
 }

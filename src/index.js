@@ -31,8 +31,6 @@ const prepareAndStartServer = () => {
         const response = await r1.getUsers();
         console.log(response);
 
-
-
         // 1. getById logic
 
         // const repo = new UserRepository();
