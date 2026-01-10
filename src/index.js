@@ -29,7 +29,7 @@ const prepareAndStartServer = () => {
         const r1 = await Role.findByPk(2);
         // u1.addRoles(r1);
         const response = await r1.getUsers();
-        console.log(response);
+        // console.log(response);
 
         // 1. getById logic
 
